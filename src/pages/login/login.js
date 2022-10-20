@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Grid, Paper, Avatar, TextField } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
@@ -8,13 +8,16 @@ import UserIcon from "@mui/icons-material/Person";
 import PasswordIcon from "@mui/icons-material/Password";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import authenticationService from "../../services/authenticationService";
+import { ThemeContext } from "../../ThemeContext";
 
 function Login() {
+  const { state } = useContext(ThemeContext);
   const paperStyle = {
     padding: 20,
     height: "70vh",
     width: 310,
     margin: "20px auto",
+    background: `${state.isDarkMode ? "rgb(98, 3, 187)" : "white"}`,
   };
   const avatarStyle = { backgroundColor: "#1bbd7e" };
   const [email, setEmail] = useState("");
@@ -45,12 +48,16 @@ function Login() {
             <Avatar style={avatarStyle}>
               <LockOutlinedIcon />
             </Avatar>
-            <h2>Iniciar Sesion</h2>
+            <h2 className={`${state.isDarkMode ? "dark" : "light"}`}>
+              Iniciar Sesion
+            </h2>
           </Grid>
-          <div className="text login">
+          <div>
             <div>
               <ListItemIcon>
-                <UserIcon className="icons" />{" "}
+                <UserIcon
+                  className={`${state.isDarkMode ? "dark" : "light"}`}
+                />{" "}
               </ListItemIcon>
               <TextField
                 variant="outlined"
@@ -65,9 +72,14 @@ function Login() {
             <br></br>
             <div>
               <ListItemIcon>
-                <PasswordIcon className="icons" />{" "}
+                <PasswordIcon
+                  className={`${state.isDarkMode ? "dark" : "light"}`}
+                />{" "}
               </ListItemIcon>
-              <FormControl className="" variant="outlined">
+              <FormControl
+                className={`${state.isDarkMode ? "dark" : "light"}`}
+                variant="outlined"
+              >
                 <InputLabel
                   htmlFor="outlined-adornment-password"
                   value={password}
@@ -89,7 +101,11 @@ function Login() {
           <br />
           <br />
           <br />
-          <button className="boton" type="submit" variant="contained">
+          <button
+            className={`boton-${state.isDarkMode ? "dark" : "light"}`}
+            type="submit"
+            variant="contained"
+          >
             Sign in
           </button>
         </Paper>

@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import tasksService from "../../services/tasksService";
 import { DataGrid } from "@mui/x-data-grid";
+import { ThemeContext } from "../../ThemeContext";
 
 function Tasks() {
+  const { state } = useContext(ThemeContext);
   const columnas = [
     {
       title: "Id",
@@ -44,9 +46,19 @@ function Tasks() {
 
   return (
     <center>
-      <div style={{ height: 400, width: "70%", backgroundColor: "white" }}>
+      <div
+        style={{
+          height: 400,
+          width: "70%",
+          backgroundColor: `${state.isDarkMode ? "rgb(98, 3, 187)" : "white"}`,
+        }}
+      >
         <h1>Tasks: </h1>
         <DataGrid
+          style={{
+            color: `${state.isDarkMode ? "white" : "black"} `,
+            borderColor: `${state.isDarkMode ? "white" : "black"} `,
+          }}
           rows={tasks}
           columns={columnas}
           pageSize={5}
