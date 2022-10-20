@@ -13,7 +13,7 @@ function App() {
   const bg = state.isDarkMode
     ? "body {background-color: rgb(43, 43, 43);}"
     : "body {background-color: rgb(177, 177, 177);}";
-  //const [mode, setMode] = useState("Change to dark mode");
+  const [mode, setMode] = useState("Change to dark mode");
   return (
     <ThemeContext.Provider value={{ state, dispatch }}>
       <Helmet>
@@ -28,23 +28,14 @@ function App() {
         onClick={() => {
           if (state.isDarkMode) {
             dispatch("SET_LIGHT_MODE");
-            //setImagen(Sol);
-            //setMode("Change to light mode");
+            setMode("Change to light mode");
           } else {
             dispatch("SET_DARK_MODE");
-            //setImagen(Luna);
-            //setMode("Change to dark mode");
+            setMode("Change to dark mode");
           }
         }}
       >
-        <img
-          className="boton"
-          //src={imagen}
-          alt="boton"
-          width={40}
-          height={40}
-        />
-        <div className={`${state.isDarkMode ? "light" : "dark"}`}></div>
+        <div className={`${state.isDarkMode ? "light" : "dark"}`}>{mode}</div>
       </Button>
       <BrowserRouter>
         <Routes>
