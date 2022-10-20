@@ -28,10 +28,10 @@ function App() {
         onClick={() => {
           if (state.isDarkMode) {
             dispatch("SET_LIGHT_MODE");
-            setMode("Change to light mode");
+            setMode("Change to dark mode");
           } else {
             dispatch("SET_DARK_MODE");
-            setMode("Change to dark mode");
+            setMode("Change to light mode");
           }
         }}
       >
